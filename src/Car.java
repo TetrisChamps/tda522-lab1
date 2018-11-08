@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Car {
+public abstract class Car implements Movable{
 
 
     private int nrDoors; // Number of doors on the car
@@ -8,6 +8,9 @@ public abstract class Car {
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
     private final String modelName; // The car model name
+    private int rotation; // The rotation of the car in degrees
+    private double xCordinate;
+    private double yCordinate;
 
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
@@ -17,10 +20,16 @@ public abstract class Car {
         stopEngine();
     }
 
+    private int rotate(int angle){
+        int rotation =  (this.rotation + angle)%360;
+        rotation = (rotation > 0) ? rotation : 360 + rotation;
+        return rotation;
 
+    }
     public int getNrDoors(){
         return nrDoors;
     }
+
     public double getEnginePower(){
         return enginePower;
     }
@@ -63,5 +72,24 @@ public abstract class Car {
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
+    }
+
+    @Override
+    public void move() {
+        xCordinate =  (Math.cos(Math.toRadians(rotation))*getCurrentSpeed());
+        yCordinate =  (Math.sin(Math.toRadians(rotation))*getCurrentSpeed());
+
+    }
+
+    @Override
+    public void turnLeft() {
+        rotation = rotate(10);
+
+    }
+
+    @Override
+    public void turnRight() {
+        rotation = rotate(-10);
+
     }
 }
