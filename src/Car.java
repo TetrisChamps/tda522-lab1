@@ -52,6 +52,17 @@ public abstract class Car implements Movable{
         color = clr;
     }
 
+    public int getRotation(){
+        return rotation;
+    }
+
+    public double getxCordinate(){
+        return xCordinate;
+    }
+
+    public double getyCordinate() {
+        return yCordinate;
+    }
     /**
      * Sets the car speed to 0.1
      */
@@ -102,10 +113,9 @@ public abstract class Car implements Movable{
      * Changes the car's x,y cordinates based on its current speed and angle
      */
     @Override
-    public void move() {
+    public void     move() {
         xCordinate =  Math.cos(Math.toRadians(rotation))*getCurrentSpeed();
         yCordinate =  Math.sin(Math.toRadians(rotation))*getCurrentSpeed();
-
     }
 
     /**
@@ -114,7 +124,6 @@ public abstract class Car implements Movable{
     @Override
     public void turnLeft() {
         rotation = rotate(10);
-
     }
 
     /**
