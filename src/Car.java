@@ -1,7 +1,8 @@
 import java.awt.*;
 
-public abstract class Car implements Movable{
 
+
+public abstract class Car implements Movable{
 
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
@@ -78,35 +79,40 @@ public abstract class Car implements Movable{
     }
 
     /**
-     * Gives the real speed of the car
-     * @return Real speed value
+     * Gives the highest maximum speed change
+     * @return Max speed change
      */
     public abstract double speedFactor();
 
     private void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        double newSpeed = getCurrentSpeed() + speedFactor() * amount;
+        currentSpeed = getEnginePower() >= newSpeed ? newSpeed : getEnginePower();
     }
 
     private void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+        double newSpeed = getCurrentSpeed() - speedFactor() * amount;
+        currentSpeed = newSpeed > 0 ? newSpeed : 0;
     }
 
     /**
-     *Positive increase to currentSpeed
-     * @param amount The increase in car speed by value, must be postive.
+     * Applies the throttle between 0-1
+     * @param speed
      */
     // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+    public final void gas(double speed){
+        incrementSpeed(capSpeed(speed));
+    }
+    /**
+     * Presses down the break lever machine stick by a factor of 0-1
+     * @param
+     */
+    // TODO fix this method according to lab pm
+    public final void brake(double speed){
+        decrementSpeed(capSpeed(speed));
     }
 
-    /**
-     * Decreases currentSpeed towards 0
-     * @param amount The decrement value, must be positive
-     */
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
+    private double capSpeed(double speed){
+        return Math.min(1, Math.max(speed, 0));
     }
 
     /**

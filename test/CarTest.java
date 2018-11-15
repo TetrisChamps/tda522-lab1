@@ -54,31 +54,31 @@ class CarTest {
 
     @Test
     void gas() {
-        car.gas(2);
-        assertEquals(2.5, car.getCurrentSpeed());
-    }
-
-    @Test
-    void brake() {
-        car.gas(2);
-        car.brake(1);
+        car.gas(1);
         assertEquals(1.25, car.getCurrentSpeed());
     }
 
     @Test
+    void brake() {
+        car.gas(1);
+        car.brake(1);
+        assertEquals(0, car.getCurrentSpeed());
+    }
+
+    @Test
     void moveX() {
-        car.gas(2);
+        car.gas(1);
         car.turnLeft();
         car.move();
-        assertEquals(2.46, (double) Math.round(car.getxCordinate() * 100.0) / 100.0);
+        assertEquals(1.23, (double) Math.round(car.getxCordinate() * 100.0) / 100.0);
     }
 
     @Test
     void moveY() {
-        car.gas(2);
+        car.gas(1);
         car.turnLeft();
         car.move();
-        assertEquals(0.43, (double) Math.round(car.getyCordinate() * 100.0) / 100.0);
+        assertEquals(0.22, (double) Math.round(car.getyCordinate() * 100.0) / 100.0);
     }
 
     @Test
