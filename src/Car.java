@@ -1,7 +1,9 @@
 import java.awt.*;
 
 
-
+/**
+ * A representation of an abstract car that is movable
+ */
 public abstract class Car implements Movable{
 
     private int nrDoors; // Number of doors on the car
@@ -82,7 +84,7 @@ public abstract class Car implements Movable{
      * Gives the highest maximum speed change
      * @return Max speed change
      */
-    public abstract double speedFactor();
+    protected abstract double speedFactor();
 
     private void incrementSpeed(double amount){
         double newSpeed = getCurrentSpeed() + speedFactor() * amount;
@@ -119,7 +121,7 @@ public abstract class Car implements Movable{
      * Changes the car's x,y cordinates based on its current speed and angle
      */
     @Override
-    public void     move() {
+    public void move() {
         xCordinate =  Math.cos(Math.toRadians(rotation))*getCurrentSpeed();
         yCordinate =  Math.sin(Math.toRadians(rotation))*getCurrentSpeed();
     }

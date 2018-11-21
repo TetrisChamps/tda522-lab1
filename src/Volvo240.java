@@ -1,11 +1,13 @@
 import java.awt.*;
 
 /**
-    En bil som fungerar både på rally och på vägen, kanske också rally på vägen. Går på bensin och vodka, kölar gött.
-    240 LEVERERAR.
+    A representation of a Volvo 240 car.
  */
 public class Volvo240 extends Car{
 
+    /**
+     * The trim factor of the car, directly affects the acceleration of the car.
+     */
     public final static double trimFactor = 1.25;
 
     /**

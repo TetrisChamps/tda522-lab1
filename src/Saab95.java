@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * Törbon drar som fa'an
+ * A representation of a SAAB 95 car
  */
 
 public class Saab95 extends Car {
@@ -16,15 +16,24 @@ public class Saab95 extends Car {
         setTurboOff();
     }
 
-
+    /**
+     * Turns on the turbo, making the car accelerate faster
+     */
     public void setTurboOn() {
         turboOn = true;
     }
 
+    /**
+     * Turn the turbo off
+     */
     public void setTurboOff() {
         turboOn = false;
     }
 
+    /**
+     * Returns the true if the turbo is enabled, else returns false
+     * @return boolean
+     */
     public boolean isTurboOn() {
         return turboOn;
     }
